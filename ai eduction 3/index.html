@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduAccess AI - Making Education Accessible for Every Student</title>
+  <meta name="description" content="AI-powered educational accessibility platform helping students learn effectively.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tesseract.js Free OCR CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-home">
+
+  <!-- Keyboard Accessibility: Skip to Content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-header" id="navbar">
+    <nav class="container navbar-container" aria-label="Main Navigation">
+      <a href="#home" class="logo-link" aria-label="EduAccess AI Homepage">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="logo-text">EduAccess <span class="logo-accent">AI</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="#home" role="menuitem" class="nav-link active">Home</a></li>
+        <li role="none"><a href="#personalizer" role="menuitem" class="nav-link">Find My Tools</a></li>
+        <li role="none"><a href="try-all-features.html" role="menuitem" class="nav-link">Try All Features</a></li>
+        <li role="none"><a href="#about" role="menuitem" class="nav-link">About</a></li>
+        <li role="none"><a href="#contact" role="menuitem" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Nav Controls -->
+      <div class="nav-actions">
+        <button id="theme-toggle-btn" class="btn btn-secondary btn-icon" aria-label="Toggle Dark Mode">
+          <span class="btn-theme-text">Dark Mode</span>
+        </button>
+        <a href="try-all-features.html" class="btn btn-primary">Try All Features</a>
+        <button id="mobile-menu-btn" class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobile-nav" class="mobile-nav-drawer" aria-hidden="true">
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="#personalizer" class="mobile-link">Find My Tools</a></li>
+        <li><a href="try-all-features.html" class="mobile-link">Try All Features</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-wrapper">
+        <img id="hero-bg-img" class="hero-bg-img" src="assets/frames/ezgif-frame-001.jpg" alt="" aria-hidden="true" />
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <!-- Floating AI-themed background decorative icons -->
+      <div class="hero-floating-icons" aria-hidden="true">
+        <svg class="floating-icon icon-brain" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 11 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 1 1-.556 6.588A4 4 0 1 1 13 18Z"/><path d="M12 5v13"/></svg>
+        <svg class="floating-icon icon-a11y" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="4" r="2"/><path d="m18 9-6-1-6 1"/><path d="M12 8v7"/><path d="m9 20 3-5 3 5"/></svg>
+        <svg class="floating-icon icon-edu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <svg class="floating-icon icon-chat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg class="floating-icon icon-analytics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-3.5-6.5L16 7M8 16l-1.5 1.5M16 16l1.5 1.5M8 8L6.5 6.5"/></svg>
+      </div>
+
+      <div class="container hero-content-wrapper">
+        <div class="hero-text-content">
+          <div class="hero-badge animate-fade-up" style="animation-delay: 0.1s;">
+            <span class="badge-dot"></span>
+            AI-Powered Inclusive Education
+          </div>
+          <h1 class="hero-title animate-fade-up" style="animation-delay: 0.25s;">
+            Education Without Barriers.
+          </h1>
+          <p class="hero-subheading animate-fade-up" style="animation-delay: 0.4s;">
+            Empowering every learner with AI-driven accessibility tools, personalized learning experiences, and inclusive education designed for everyone.
+          </p>
+
+          <div class="hero-cta-group animate-fade-up" style="animation-delay: 0.55s;">
+            <a href="#personalizer" class="btn btn-hero-primary">🎯 Find My Assistive Tools</a>
+            <a href="try-all-features.html" class="btn btn-hero-secondary">⚡ Try All Features</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smart Interactive Accessibility Questionnaire & Personalized Tools Section -->
+    <section id="personalizer" class="personalizer-section">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header text-center">
+          <span class="badge-tag">Smart Accessibility Assistant</span>
+          <h2 class="section-title">Personalize Your Learning Tools</h2>
+          <p class="section-subtitle">Answer 3 quick questions to get the exact AI assistive features tailored to your needs.</p>
+        </div>
+
+        <!-- Questionnaire Card Wizard -->
+        <div id="quiz-wizard-card" class="quiz-wizard-card">
+          
+          <!-- Wizard Header & Progress -->
+          <div class="quiz-progress-bar-wrapper">
+            <div class="quiz-step-labels">
+              <span id="quiz-step-title">Question 1 of 3</span>
+              <span id="quiz-step-percent">33% Completed</span>
+            </div>
+            <div class="quiz-progress-track">
+              <div id="quiz-progress-fill" class="quiz-progress-fill" style="width: 33%;"></div>
+            </div>
+          </div>
+
+          <!-- Wizard Form Steps -->
+          <form id="quiz-form" onsubmit="return false;">
+            
+            <!-- STEP 1 -->
+            <div class="quiz-step-pane active" id="quiz-step-1">
+              <h3 class="quiz-question">1. What learning support do you need most?</h3>
+              <p class="quiz-hint">Select your primary goal to help us tailor your tools.</p>
+              
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_support" value="hearing" checked>
+                  <div class="option-content">
+                    <div class="option-icon">🎙️</div>
+                    <div class="option-details">
+                      <strong>Hearing Support</strong>
+                      <span>Live captions & speech-to-text transcriptions for spoken lectures.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_support" value="visual">
+                  <div class="option-content">
+                    <div class="option-icon">👁️</div>
+                    <div class="option-details">
+                      <strong>Visual Assistance</strong>
+                      <span>AI diagram explanations & optical text reading for images/textbooks.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_support" value="dyslexia">
+                  <div class="option-content">
+                    <div class="option-icon">📖</div>
+                    <div class="option-details">
+                      <strong>Dyslexia & Reading Focus</strong>
+                      <span>Accessible fonts, line height, contrast & audio recitation tracking.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_support" value="translation">
+                  <div class="option-content">
+                    <div class="option-icon">🌐</div>
+                    <div class="option-details">
+                      <strong>Language Translation</strong>
+                      <span>Translate learning materials across 8 languages with native speech.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card full-span">
+                  <input type="radio" name="q_support" value="all">
+                  <div class="option-content">
+                    <div class="option-icon">⚡</div>
+                    <div class="option-details">
+                      <strong>All Accessibility Tools</strong>
+                      <span>Show me all available AI features at once.</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="quiz-action-bar text-right">
+                <button type="button" class="btn btn-primary" id="quiz-next-1">Next Question &rarr;</button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="quiz-step-pane" id="quiz-step-2" style="display: none;">
+              <h3 class="quiz-question">2. What type of study material are you using today?</h3>
+              <p class="quiz-hint">Choose the format of your learning content.</p>
+
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_material" value="lecture" checked>
+                  <div class="option-content">
+                    <div class="option-icon">🗣️</div>
+                    <div class="option-details">
+                      <strong>Live Lecture / Teacher Speech</strong>
+                      <span>Spoken explanation during class or online meeting.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_material" value="textbook">
+                  <div class="option-content">
+                    <div class="option-icon">📚</div>
+                    <div class="option-details">
+                      <strong>Printed Textbook / Document Photo</strong>
+                      <span>Physical textbook pages, handouts, or notes.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_material" value="diagram">
+                  <div class="option-content">
+                    <div class="option-icon">📊</div>
+                    <div class="option-details">
+                      <strong>Diagram, Chart or Science Figure</strong>
+                      <span>Complex visual illustrations requiring detailed explanation.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_material" value="digital">
+                  <div class="option-content">
+                    <div class="option-icon">📄</div>
+                    <div class="option-details">
+                      <strong>Digital Text / Web Article</strong>
+                      <span>Electronic text or digital reading assignments.</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="quiz-action-bar flex-between">
+                <button type="button" class="btn btn-outline" id="quiz-back-2">&larr; Previous</button>
+                <button type="button" class="btn btn-primary" id="quiz-next-2">Next Question &rarr;</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="quiz-step-pane" id="quiz-step-3" style="display: none;">
+              <h3 class="quiz-question">3. How do you prefer to absorb learning content?</h3>
+              <p class="quiz-hint">Select your preferred viewing or listening preference.</p>
+
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_preference" value="audio" checked>
+                  <div class="option-content">
+                    <div class="option-icon">🔊</div>
+                    <div class="option-details">
+                      <strong>Voice Read-Aloud</strong>
+                      <span>Listen to text being read aloud with sentence highlighting.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_preference" value="captions">
+                  <div class="option-content">
+                    <div class="option-icon">📝</div>
+                    <div class="option-details">
+                      <strong>Real-Time Live Captions</strong>
+                      <span>Read visual captions on screen while listening.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_preference" value="typography">
+                  <div class="option-content">
+                    <div class="option-icon">🎨</div>
+                    <div class="option-details">
+                      <strong>Dyslexia Fonts & Spacing</strong>
+                      <span>Custom spacing, Atkinson font, and warm backgrounds.</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="quiz-option-card">
+                  <input type="radio" name="q_preference" value="bilingual">
+                  <div class="option-content">
+                    <div class="option-icon">🌍</div>
+                    <div class="option-details">
+                      <strong>Multi-Language Audio & Text</strong>
+                      <span>Translated text with native pronunciation audio.</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="quiz-action-bar flex-between">
+                <button type="button" class="btn btn-outline" id="quiz-back-3">&larr; Previous</button>
+                <button type="submit" class="btn btn-hero-primary" id="quiz-submit-btn">✨ Show My Assistive Suite</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Result Banner & Dynamic Personalized Tools Display Area -->
+        <div id="personalized-result-section" class="personalized-result-section" style="display: none;">
+          
+          <div class="recommendation-header-box">
+            <div class="rec-badge-row">
+              <span class="rec-badge">🎯 AI Recommendation Match</span>
+              <span id="rec-match-tag" class="rec-tag-text">Hearing & Lecture Assistance Suite</span>
+            </div>
+            <h3 id="rec-heading" class="rec-title">Your Tailored Assistive Tools</h3>
+            <p id="rec-description" class="rec-desc">Based on your choices, we have activated the following assistive tools for your study session:</p>
+            
+            <div class="rec-actions">
+              <button id="quiz-retake-btn" class="btn btn-outline btn-sm">🔄 Retake Questionnaire</button>
+              <a href="try-all-features.html" class="btn btn-secondary btn-sm">⚡ Try All Features Page</a>
+            </div>
+          </div>
+
+          <!-- Dynamic Container holding the active feature cards -->
+          <div class="features-grid" id="personalized-features-grid">
+
+            <!-- Feature 1: Speech-to-Text -->
+            <article class="feature-card" id="feature-stt">
+              <div class="card-header">
+                <h3 class="feature-title">Speech-to-Text</h3>
+              </div>
+              <p class="feature-purpose">Convert teacher speech into live classroom captions.</p>
+              
+              <div class="demo-box">
+                <div class="demo-controls-row">
+                  <button id="stt-mic-btn" class="btn btn-primary btn-sm">
+                    <span>Start Microphone Demo</span>
+                  </button>
+                  <span id="stt-status-badge" class="status-indicator">Ready</span>
+                </div>
+
+                <div class="caption-display-area" id="stt-caption-output" aria-live="polite">
+                  <p class="placeholder-text">Press "Start Microphone Demo" to generate captions...</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Feature 2: Text-to-Speech -->
+            <article class="feature-card" id="feature-tts">
+              <div class="card-header">
+                <h3 class="feature-title">Text-to-Speech</h3>
+              </div>
+              <p class="feature-purpose">Read educational material aloud with sentence tracking.</p>
+              
+              <div class="demo-box">
+                <label for="tts-input-text" class="sr-only">Type or paste text</label>
+                <textarea id="tts-input-text" class="form-textarea" rows="3" placeholder="Type or paste text here...">Artificial Intelligence empowers every student to learn at their own pace.</textarea>
+                
+                <div class="tts-highlight-box" id="tts-sentence-preview" style="display:none;" aria-live="polite"></div>
+
+                <div class="demo-action-bar">
+                  <button id="tts-read-btn" class="btn btn-secondary btn-sm">Read</button>
+                  <button id="tts-pause-btn" class="btn btn-outline btn-sm" disabled>Pause</button>
+                  <button id="tts-stop-btn" class="btn btn-outline btn-sm" disabled>Stop</button>
+                </div>
+
+                <div class="tts-settings-grid">
+                  <div class="setting-item">
+                    <label for="tts-voice-select">Voice</label>
+                    <select id="tts-voice-select" class="form-select">
+                      <option value="">Default Voice</option>
+                    </select>
+                  </div>
+                  <div class="setting-item">
+                    <label for="tts-speed-slider">Speed: <span id="tts-speed-val">1.0x</span></label>
+                    <input type="range" id="tts-speed-slider" min="0.5" max="2.0" step="0.1" value="1.0" class="form-range">
+                  </div>
+                  <div class="setting-item">
+                    <label for="tts-volume-slider">Volume: <span id="tts-volume-val">100%</span></label>
+                    <input type="range" id="tts-volume-slider" min="0" max="1" step="0.1" value="1" class="form-range">
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Feature 4: AI Image Description -->
+            <article class="feature-card" id="feature-vision">
+              <div class="card-header">
+                <h3 class="feature-title">AI Image Description</h3>
+              </div>
+              <p class="feature-purpose">Generate text explanations for diagrams and images.</p>
+              
+              <div class="demo-box">
+                <div id="vision-dropzone" class="dropzone" tabIndex="0" role="button" aria-label="Upload image">
+                  <input type="file" id="vision-file-input" accept="image/*" class="sr-only">
+                  <div class="dropzone-prompt" id="vision-prompt-content">
+                    <p>Drag & drop image or <span class="highlight-link">Browse Image</span></p>
+                    <button type="button" class="btn btn-outline btn-xs" id="vision-sample-btn">Use Sample Image</button>
+                  </div>
+
+                  <div class="dropzone-preview" id="vision-preview-container" style="display:none;">
+                    <img id="vision-img-preview" src="" alt="Classroom lesson preview" class="preview-thumbnail">
+                    <button type="button" class="btn-remove" id="vision-remove-btn" aria-label="Remove image">&times;</button>
+                  </div>
+                </div>
+
+                <div class="gemini-key-field" style="margin-top: 8px;">
+                  <label for="gemini-api-key" style="font-size: 0.75rem; color: var(--text-muted); display: block;">Gemini API Key (Optional):</label>
+                  <input type="password" id="gemini-api-key" class="form-input" placeholder="Paste API key or leave blank" style="margin-bottom:0; font-size: 0.8rem;">
+                </div>
+
+                <div id="vision-loader" class="ai-loading-state" style="display:none; margin-top:8px;">
+                  <div class="spinner"></div>
+                  <span id="vision-loader-text">Analyzing image...</span>
+                </div>
+
+                <div id="vision-result" class="vision-result-box" style="display:none;" aria-live="polite">
+                  <div class="result-label">Generated Description:</div>
+                  <p id="vision-description-text" class="result-text">"This image shows a classroom where a teacher is explaining the solar system while students are raising their hands."</p>
+                  <button id="vision-speak-btn" class="btn btn-sm btn-outline">🔊 Read Aloud</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Feature 5: OCR Text Reader -->
+            <article class="feature-card" id="feature-ocr">
+              <div class="card-header">
+                <h3 class="feature-title">OCR Text Reader</h3>
+              </div>
+              <p class="feature-purpose">Extract printed text from textbook photos.</p>
+              
+              <div class="demo-box">
+                <div class="ocr-workflow-steps">
+                  <div class="ocr-step active" id="ocr-step-1">1. Upload</div>
+                  <div class="ocr-arrow">&rarr;</div>
+                  <div class="ocr-step" id="ocr-step-2">2. Extract</div>
+                  <div class="ocr-arrow">&rarr;</div>
+                  <div class="ocr-step" id="ocr-step-3">3. Listen</div>
+                </div>
+
+                <div class="ocr-upload-area" id="ocr-upload-box">
+                  <input type="file" id="ocr-file-input" accept="image/*" class="sr-only">
+                  <button type="button" id="ocr-select-btn" class="btn btn-outline btn-sm">Upload Photo</button>
+                  <button type="button" id="ocr-sample-btn" class="btn btn-secondary btn-sm">Sample Page</button>
+                </div>
+
+                <div id="ocr-scanner" class="ocr-scanner-animation" style="display:none;">
+                  <p id="ocr-scanner-status">Extracting text...</p>
+                </div>
+
+                <div id="ocr-output-box" class="ocr-result-container" style="display:none;" aria-live="polite">
+                  <div class="ocr-result-header">
+                    <span>Extracted Text:</span>
+                    <button id="ocr-read-btn" class="btn btn-primary btn-xs">🔊 Read Aloud</button>
+                  </div>
+                  <blockquote id="ocr-extracted-text" class="ocr-text-quote">
+                    "The Earth revolves around the Sun once every 365 days."
+                  </blockquote>
+                </div>
+              </div>
+            </article>
+
+            <!-- Feature 6: Dyslexia Reading Mode -->
+            <article class="feature-card" id="feature-dyslexia">
+              <div class="card-header">
+                <h3 class="feature-title">Dyslexia Reading Mode</h3>
+              </div>
+              <p class="feature-purpose">Customize typography, contrast, line height, and spacing.</p>
+              
+              <div class="demo-box">
+                <div class="toggle-row">
+                  <label for="dyslexia-toggle" class="toggle-label">
+                    <strong>Enable Dyslexia Mode</strong>
+                  </label>
+                  <input type="checkbox" id="dyslexia-toggle" class="custom-toggle-input">
+                </div>
+
+                <div class="dyslexia-controls-grid">
+                  <div class="setting-item">
+                    <label for="dyslexia-size-slider">Font Size: <span id="dyslexia-size-val">100%</span></label>
+                    <input type="range" id="dyslexia-size-slider" min="90" max="140" value="100" class="form-range">
+                  </div>
+                  <div class="setting-item">
+                    <label for="dyslexia-height-slider">Line Height: <span id="dyslexia-height-val">1.6</span></label>
+                    <input type="range" id="dyslexia-height-slider" min="1.4" max="2.4" step="0.1" value="1.6" class="form-range">
+                  </div>
+                  <div class="setting-item">
+                    <label for="dyslexia-spacing-slider">Letter Spacing: <span id="dyslexia-spacing-val">0.05em</span></label>
+                    <input type="range" id="dyslexia-spacing-slider" min="0.0" max="0.2" step="0.02" value="0.05" class="form-range">
+                  </div>
+                </div>
+
+                <div id="dyslexia-preview-box" class="dyslexia-preview-card">
+                  <p>This sample paragraph demonstrates dyslexic-friendly typography adjustments.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Feature 9: AI Translation -->
+            <article class="feature-card" id="feature-translation">
+              <div class="card-header">
+                <h3 class="feature-title">AI Translation</h3>
+              </div>
+              <p class="feature-purpose">Translate text across languages with speech output.</p>
+              
+              <div class="demo-box">
+                <div class="translation-grid-selectors">
+                  <div class="setting-item">
+                    <label for="translate-from">Translate From</label>
+                    <select id="translate-from" class="form-select" disabled>
+                      <option value="en">English</option>
+                    </select>
+                  </div>
+                  <div class="setting-item">
+                    <label for="translate-to">Translate To</label>
+                    <select id="translate-to" class="form-select">
+                      <option value="hi">Hindi (हिंदी)</option>
+                      <option value="mr">Marathi (मराठी)</option>
+                      <option value="gu">Gujarati (ગુજરાતી)</option>
+                      <option value="es">Spanish (Español)</option>
+                      <option value="fr">French (Français)</option>
+                      <option value="de">German (Deutsch)</option>
+                      <option value="ja">Japanese (日本語)</option>
+                      <option value="ar">Arabic (العربية)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="translation-inputs">
+                  <div>
+                    <input type="text" id="translate-input" class="form-input" value="Artificial Intelligence improves education.">
+                  </div>
+                  <div class="translation-actions">
+                    <button id="translate-btn" class="btn btn-primary btn-sm">Translate</button>
+                  </div>
+                </div>
+
+                <div id="translate-result-box" class="translation-output-card" aria-live="polite">
+                  <div class="output-header">
+                    <span id="translate-target-label">Translated Output (Hindi):</span>
+                    <button id="translate-audio-btn" class="btn btn-xs btn-outline">🔊 Listen</button>
+                  </div>
+                  <p id="translate-output-text" class="translated-phrase">कृत्रिम बुद्धिमत्ता शिक्षा को बेहतर बनाती है।</p>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title">How It Works</h2>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-step">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Answer & Customize</h3>
+            <p class="step-desc">Answer 3 quick questions or open all features to pick your assistive mode.</p>
+          </div>
+
+          <div class="timeline-arrow">&rarr;</div>
+
+          <div class="timeline-step">
+            <div class="step-number">02</div>
+            <h3 class="step-title">Process</h3>
+            <p class="step-desc">AI algorithms analyze text, audio, images, and visual layout in real-time.</p>
+          </div>
+
+          <div class="timeline-arrow">&rarr;</div>
+
+          <div class="timeline-step">
+            <div class="step-number">03</div>
+            <h3 class="step-title">Learn</h3>
+            <p class="step-desc">Live captions, visual explanations, audio recitations, and dyslexia fonts delivered.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-card">
+          <div class="section-header text-center">
+            <h2 class="about-heading">Why EduAccess AI?</h2>
+            <p class="about-text">
+              EduAccess AI assists students with hearing, visual, reading, and language learning needs through simple accessibility tools.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-box">
+          <div class="section-header text-center">
+            <h2 class="section-title">Contact Us</h2>
+          </div>
+
+          <form id="contact-form" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="Your email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" class="form-textarea" rows="3" placeholder="Your message" required></textarea>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+            </div>
+            <div id="contact-success" class="alert-success" style="display:none;" aria-live="polite">
+              Message sent successfully.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#home" class="logo-link">
+          <span class="logo-text">EduAccess <span class="logo-accent">AI</span></span>
+        </a>
+        <p class="footer-copy">&copy; 2026 EduAccess AI.</p>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#personalizer">Find My Tools</a></li>
+          <li><a href="try-all-features.html">Try All Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-policies">
+        <h4>Legal</h4>
+        <ul>
+          <li><button class="footer-modal-trigger" id="open-accessibility-statement">Accessibility Statement</button></li>
+          <li><button class="footer-modal-trigger" id="open-privacy-policy">Privacy Policy</button></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BONUS: Floating Accessibility Button & Side Drawer -->
+  <button id="floating-a11y-btn" class="floating-a11y-trigger" aria-label="Open Accessibility Toolbar" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"></circle><path d="M18 9l-6-1-6 1"></path><path d="M12 8v6"></path><path d="M10 14l-2 6"></path><path d="M14 14l2 6"></path></svg>
+  </button>
+
+  <aside id="a11y-drawer" class="a11y-side-drawer" aria-hidden="true" role="dialog" aria-labelledby="a11y-drawer-title">
+    <div class="a11y-drawer-header">
+      <h3 id="a11y-drawer-title">♿ Accessibility Suite</h3>
+      <button id="a11y-drawer-close" class="btn-close" aria-label="Close accessibility panel">&times;</button>
+    </div>
+
+    <div class="a11y-drawer-body">
+      <div class="a11y-option">
+        <span>Dark Mode</span>
+        <button id="a11y-toggle-dark" class="btn btn-sm btn-outline">Toggle</button>
+      </div>
+
+      <div class="a11y-option">
+        <span>Font Size</span>
+        <div class="btn-group">
+          <button id="a11y-font-down" class="btn btn-xs btn-outline" aria-label="Decrease font size">- A</button>
+          <button id="a11y-font-reset" class="btn btn-xs btn-outline" aria-label="Reset font size">Normal</button>
+          <button id="a11y-font-up" class="btn btn-xs btn-outline" aria-label="Increase font size">+ A</button>
+        </div>
+      </div>
+
+      <div class="a11y-option">
+        <span>High Contrast</span>
+        <button id="a11y-toggle-contrast" class="btn btn-sm btn-outline">Enable</button>
+      </div>
+
+      <div class="a11y-option">
+        <span>Dyslexia Font Mode</span>
+        <button id="a11y-toggle-dyslexia" class="btn btn-sm btn-outline">Enable</button>
+      </div>
+
+      <div class="a11y-option vertical">
+        <label>Screen Reader Simulation</label>
+        <button id="a11y-read-page" class="btn btn-primary btn-sm w-100">🔊 Read Page Aloud</button>
+      </div>
+
+      <div class="a11y-footer">
+        <button id="a11y-reset-all" class="btn btn-outline btn-xs w-100">Reset All Settings</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal Dialog: Accessibility Statement -->
+  <dialog id="modal-a11y-statement" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Accessibility Statement</h3>
+        <button class="modal-close" id="close-modal-a11y">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>EduAccess AI conforms to WCAG 2.1 Level AA accessibility standards with full keyboard and screen-reader support.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal Dialog: Privacy Policy -->
+  <dialog id="modal-privacy-policy" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Privacy Policy</h3>
+        <button class="modal-close" id="close-modal-privacy">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Your privacy is protected. EduAccess AI processes requests locally in your browser wherever possible.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
