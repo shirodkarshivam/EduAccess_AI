@@ -30,6 +30,9 @@ Over **1 Billion people worldwide** experience disabilities. In conventional edu
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4368a53-1e10-4869-87a2-47a64a78935a" />
 
+https://github.com/user-attachments/assets/4eb5bb06-c4bc-4030-8dc8-0ba7293faffa
+
+
 
 ## 🌟 Key Features
 
