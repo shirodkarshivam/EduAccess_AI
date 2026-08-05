@@ -24,7 +24,12 @@ Over **1 Billion people worldwide** experience disabilities. In conventional edu
 ### 🟢 The Solution
 **EduAccess AI** unifies 6 powerful accessibility tools into a fast, privacy-focused, zero-install web studio:
 
----
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/82be9f6e-a783-47f0-8c5a-42403d73cb3c" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6421cee4-f583-4a5b-8d98-e6b31af668de" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4368a53-1e10-4869-87a2-47a64a78935a" />
+
 
 ## 🌟 Key Features
 
